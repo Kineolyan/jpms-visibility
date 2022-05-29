@@ -1,5 +1,5 @@
 module com.kineolyan.jpms.lib {
-    requires lombok;
+    requires static lombok;
     requires com.kineolyan.jpms.sdk;
     requires com.kineolyan.jpms.core;
 
