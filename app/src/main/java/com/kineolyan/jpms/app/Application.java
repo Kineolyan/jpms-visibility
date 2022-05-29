@@ -7,9 +7,10 @@ import com.kineolyan.jpms.lib.api.UserServiceImpl;
 public class Application {
 
   public static void main(final String[] args) {
-    final var application = LibService.bootstrap()
-            .createApplication();
+    final var application = LibService.bootstrap().createApplication();
     final UserServiceImpl service = application.service();
+    // Not working internal service not visible
+    //    final InternalService innerSvc = null;
     final Calculator calculator = application.calculator();
 
     service.describe(System.err);
