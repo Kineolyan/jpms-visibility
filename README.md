@@ -34,3 +34,56 @@ The _core_ module can use the backdoor to access the internal service and build 
 
 The final _app_ module can build an `Application` using the exposed public API and gets compile errors when trying to
 access the inner interfaces and classes.
+
+See the attempts of `MainApplication#tryingToHackAndAccessService` to access the inner classes:
+
+```
+Testing service with public visibility
+Using private com.kineolyan.jpms.lib.internal.InternalServiceImpl com.kineolyan.jpms.lib.api.UserServiceImpl.getService() to access the inner service
+Using service com.kineolyan.jpms.lib.api.UserServiceImpl
+Creating service com.kineolyan.jpms.hlib.api.HiddenUserServiceImpl
+Using public com.kineolyan.jpms.hlib.internal.OtherInternalServiceImpl com.kineolyan.jpms.hlib.api.HiddenUserServiceImpl.getSecret() to access the inner service
+Service  = 13
+Calculator  = 3
+Can access the annotation: com.kineolyan.jpms.sdk.internal.intf.Backdoor
+Found 1 annotated methods
+Cannot access private com.kineolyan.jpms.lib.internal.InternalServiceImpl com.kineolyan.jpms.lib.api.UserServiceImpl.getService()
+
+--------
+
+Testing service with hidden visibility
+Service  = -7
+Calculator  = 98
+Can access the annotation: com.kineolyan.jpms.sdk.internal.intf.Backdoor
+Found 1 annotated methods
+Cannot access public com.kineolyan.jpms.hlib.internal.OtherInternalServiceImpl com.kineolyan.jpms.hlib.api.HiddenUserServiceImpl.getSecret()
+```
+
+- we must copy-paste the explicit name of the annotation as it is not accessible
+- trying to give access is not possible and would result in exception, without an explicit ad-hoc VM option
+- it would require something like the
+  following `--add-opens com.kineolyan.jpms.lib/com.kineolyan.jpms.lib.api=com.kineolyan.jpms.app` to give the access to
+  the magical class, a task even harder with unnamed modules. Note that the previous `opens` only work for the first service, the opens not being present for the second.
+
+```
+Testing service with public visibility
+Using private com.kineolyan.jpms.lib.internal.InternalServiceImpl com.kineolyan.jpms.lib.api.UserServiceImpl.getService() to access the inner service
+Using service com.kineolyan.jpms.lib.api.UserServiceImpl
+Creating service com.kineolyan.jpms.hlib.api.HiddenUserServiceImpl
+Using public com.kineolyan.jpms.hlib.internal.OtherInternalServiceImpl com.kineolyan.jpms.hlib.api.HiddenUserServiceImpl.getSecret() to access the inner service
+Service  = 13
+Calculator  = 3
+Can access the annotation: com.kineolyan.jpms.sdk.internal.intf.Backdoor
+Found 1 annotated methods
+Giving access to private com.kineolyan.jpms.lib.internal.InternalServiceImpl com.kineolyan.jpms.lib.api.UserServiceImpl.getService()
+Accessing inner object com.kineolyan.jpms.lib.internal.InternalServiceImpl@5010be6
+
+--------
+
+Testing service with hidden visibility
+Service  = -7
+Calculator  = 98
+Can access the annotation: com.kineolyan.jpms.sdk.internal.intf.Backdoor
+Found 1 annotated methods
+Cannot access public com.kineolyan.jpms.hlib.internal.OtherInternalServiceImpl com.kineolyan.jpms.hlib.api.HiddenUserServiceImpl.getSecret()
+```
