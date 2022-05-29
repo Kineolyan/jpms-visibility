@@ -12,7 +12,9 @@ import java.io.PrintStream;
 @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
 public class UserServiceImpl implements UserService {
 
-  @Getter(onMethod_ = {@Backdoor})
+  @Getter(
+      value = AccessLevel.PRIVATE,
+      onMethod_ = {@Backdoor})
   private final InternalServiceImpl service;
 
   @Override

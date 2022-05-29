@@ -18,7 +18,7 @@ public class BackdoorGetter {
             case 1 -> methods.get(0);
             default -> throw new IllegalStateException("Too many methods");
         };
-
+        System.err.println("Using " + method + " to access the inner service");
         method.setAccessible(true);
         try {
             return (InternalService) method.invoke(facade);

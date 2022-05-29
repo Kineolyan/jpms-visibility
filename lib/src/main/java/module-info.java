@@ -5,6 +5,6 @@ module com.kineolyan.jpms.lib {
 
   exports com.kineolyan.jpms.lib.api;
 
-// Not needed as classes are visible
-//  opens com.kineolyan.jpms.lib.api to com.kineolyan.jpms.sdk;
+  opens com.kineolyan.jpms.lib.api to
+      com.kineolyan.jpms.sdk;
 }
