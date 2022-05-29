@@ -1,6 +1,8 @@
-package com.kineolyan.jpms.sdk.internal;
+package com.kineolyan.jpms.sdk.internal.access;
 
 import com.kineolyan.jpms.sdk.api.UserService;
+import com.kineolyan.jpms.sdk.internal.intf.Backdoor;
+import com.kineolyan.jpms.sdk.internal.intf.InternalService;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;

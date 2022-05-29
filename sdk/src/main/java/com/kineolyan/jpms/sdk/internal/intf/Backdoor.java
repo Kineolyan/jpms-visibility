@@ -1,4 +1,4 @@
-package com.kineolyan.jpms.sdk.internal;
+package com.kineolyan.jpms.sdk.internal.intf;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

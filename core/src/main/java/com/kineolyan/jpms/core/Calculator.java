@@ -1,8 +1,8 @@
 package com.kineolyan.jpms.core;
 
 import com.kineolyan.jpms.sdk.api.UserService;
-import com.kineolyan.jpms.sdk.internal.BackdoorGetter;
-import com.kineolyan.jpms.sdk.internal.InternalService;
+import com.kineolyan.jpms.sdk.internal.access.BackdoorGetter;
+import com.kineolyan.jpms.sdk.internal.intf.InternalService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 

@@ -1,4 +1,4 @@
-package com.kineolyan.jpms.sdk.internal;
+package com.kineolyan.jpms.sdk.internal.intf;
 
 public interface InternalService {
 
