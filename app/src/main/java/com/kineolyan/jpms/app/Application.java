@@ -10,7 +10,9 @@ public class Application {
     final var application = LibService.bootstrap().createApplication();
     final UserServiceImpl service = application.service();
     // Not working internal service not visible
-    //    final InternalService innerSvc = null;
+    //    final InternalService innerIntfSvc = null;
+    // Not working as the impl is hidden
+    //    final com.kineolyan.jpms.lib.internal.InternalServiceImpl innerImplSvc = null;
     final Calculator calculator = application.calculator();
 
     service.describe(System.err);

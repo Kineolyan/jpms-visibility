@@ -12,6 +12,8 @@ public final class LibService {
   }
 
   public Application createApplication() {
+    // Cannot access in this module
+    // com.kineolyan.jpms.sdk.internal.access.BackdoorGetter;
     final UserServiceImpl userService = new UserServiceImpl(new InternalServiceImpl());
     return new Application(userService, Calculator.from(userService));
   }
